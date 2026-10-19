@@ -18,6 +18,10 @@ def test_find_by_title(small_catalog):
     assert small_catalog.find_by_title("存在しない") == []
 
 
+def test_find_by_title_is_case_insensitive(small_catalog):
+    assert [b.id for b in small_catalog.find_by_title("python")] == [1]
+
+
 def test_search_by_author_and_tag(small_catalog):
     assert [b.id for b in small_catalog.search(["青木 葵"])] == [1, 3]
     assert [b.id for b in small_catalog.search(["入門"])] == [1, 2]

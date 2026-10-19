@@ -22,3 +22,7 @@ def format_overdue(loans: list[Loan], catalog: Catalog, today: date) -> str:
         days = (today - loan.due_on).days
         lines.append(f"{title}：{days}日 延滞（利用者 ID {loan.member_id}）")
     return "\n".join(lines)
+
+
+def format_titles(books):
+    return "、".join(book.title for book in books)

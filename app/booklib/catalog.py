@@ -32,8 +32,13 @@ class Catalog:
         # 書名・著者・タグのどれかにキーワードを含む本を探す
         results = []
         for keyword in keywords:
+            folded_keyword = keyword.casefold()
             for book in self._books:
-                if keyword in book.title or keyword in book.author or keyword in book.tags:
+                if (
+                    folded_keyword in book.title.casefold()
+                    or folded_keyword in book.author.casefold()
+                    or folded_keyword in (tag.casefold() for tag in book.tags)
+                ):
                     if book not in results:
                         results.append(book)
         return results

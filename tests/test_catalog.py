@@ -33,6 +33,23 @@ def test_search_no_duplicates(small_catalog):
     assert [b.id for b in small_catalog.search(["Python", "入門"])] == [1, 2]
 
 
+@pytest.mark.parametrize(
+    ("keyword", "expected_ids"),
+    [
+        ("space", [4]),
+        ("SPACE", [4]),
+        ("jane doe", [4]),
+        ("JANE DOE", [4]),
+        ("scifi", [4]),
+        ("SCIFI", [4]),
+    ],
+)
+def test_search_case_insensitive(small_catalog, keyword, expected_ids):
+    small_catalog.add_book(Book(4, "Space Opera", "Jane Doe", "000-0-0000-0004", 2022, ["SciFi"]))
+
+    assert [book.id for book in small_catalog.search([keyword])] == expected_ids
+
+
 def test_load_catalog(full_catalog):
     assert len(full_catalog.all_books()) == 50
     assert full_catalog.get(1).tags == ["python", "入門"]

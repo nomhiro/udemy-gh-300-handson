@@ -24,5 +24,6 @@ def format_overdue(loans: list[Loan], catalog: Catalog, today: date) -> str:
     return "\n".join(lines)
 
 
-def format_titles(books):
+def format_titles(books: list[Book]) -> str:
+    """蔵書のタイトルを読点で区切った文字列を返す。"""
     return "、".join(book.title for book in books)

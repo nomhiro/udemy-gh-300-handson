@@ -19,7 +19,7 @@
 
 ## 検索
 
-- 書名の部分一致で探す（`Catalog.find_by_title`）
+- 大文字・小文字を区別せず、書名の部分一致で探す（`Catalog.find_by_title`）
 - 書名・著者・タグのどれかにキーワードを含む本を探す（`Catalog.search`）
 
 ## コードの決まり
